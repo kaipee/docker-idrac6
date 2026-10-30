@@ -24,18 +24,11 @@ services:
     ports:
       - 5801:5800
       - 5901:5900
-    secrets:
-      - idrac_host
-      - idrac_user
-      - idrac_password
+    environment:
+      - IDRAC_HOST=${IDRAC_HOST:-idrac1.example.org}
+      - IDRAC_USER=${IDRAC_USER:-root}
+      - IDRAC_PASSWORD=${IDRAC_PASSWORD:-1234}
     volumes:
       - ${PATH_APP:-./app}:/app
       - ${PATH_VMEDIA:-./vmedia}:/vmedia
       - ${PATH_SCREENSHOTS:-./screenshots}:/screenshots
-secrets:
-  idrac_host:
-    file: ./idrac_host.txt
-  idrac_user:
-    file: ./idrac_user.txt
-  idrac_password:
-    file: ./idrac_password.txt
